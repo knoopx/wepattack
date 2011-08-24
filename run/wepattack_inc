@@ -1,0 +1,36 @@
+#!/bin/sh
+# 
+# Shell Script for joining JOHN THE RIPPER and WEPATTACK
+# by Dominik Blunk and Alain Girardet
+#
+# Incremental mode of john
+#
+# usage: ./run_inc DUMPFILE
+#
+
+# Edit /etc/wepattack.conf for configuration
+. /etc/wepattack.conf
+
+#
+# command to join JOHN RIPPER and WEPATTACK
+#
+
+if test -z $1; then
+	echo "Error: Option DUMPFILE required.";
+	exit 1;
+fi
+
+if test ! -f $1; then
+	echo "Error: Dumpfile '$1' does not exist.";
+	exit 1;
+fi
+
+if test -f $JOHNDIR/john; then
+	$JOHNDIR/john -incremental -stdout:13\
+ 	| wepattack -f $1;
+	exit 0;
+else
+	echo "John the ripper not found! Edit '/etc/wepattack.conf' ";
+	echo "to set correct path...";
+	exit 1;
+fi

@@ -1,0 +1,29 @@
+WepAttack 0.1.3
+(c) Dominik Blunk and Alain Girardet
+
+WepAttack is a Wireless LAN Tool for Linux which guesses WEP Keys based on
+a active dictionary attack. Millions of words can be checked out.
+
+Requirements
+============
+If you want to compile WepAttack, you must have at least following
+ libraries present:
+
+- libpcap	http://www.tcpdump.org
+- libcrypto	http://www.openssl.org
+- libz 		commmonly installed
+
+
+Usage
+=====
+For a quick reference type:
+wepattack --help
+
+Full Installation How-To is published at: 
+http://wepattack.sourceforge.net
+
+
+For further informations contact us:
+
+Dominik Blunk <dominik@blunk.ch>
+Alain Girardet <alain@girardet.net>

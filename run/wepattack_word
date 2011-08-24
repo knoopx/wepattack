@@ -1,0 +1,38 @@
+#!/bin/sh
+# 
+# Shell Script for joining JOHN THE RIPPER and WEPATTACK
+# by Dominik Blunk and Alain Girardet
+# 15-10-2002
+#
+# Wordlist mode with rules
+#
+# usage: ./wepattack_word DUMPFILE
+#
+
+# edit /etc/wepattack.conf for configuration
+. /etc/wepattack.conf
+
+#
+# command to join JOHN THE RIPPER and WEPATTACK
+#
+
+if test -z $1; then
+	echo "Error: Option DUMPFILE required.";
+	exit 1;
+fi
+
+if test ! -f $1; then
+	echo "Error: Dumpfile '$1' does not exist.";
+	exit 1;
+fi
+
+if test -f $JOHNDIR/john; then
+
+	$JOHNDIR/john -wordfile:$WORDLIST -rules -stdout:13\
+ 	| wepattack -f $1
+	exit 0;
+else
+	echo "John the ripper not found! Edit '/etc/wepattack.conf' ";
+	echo "to set correct path.."
+	exit 1;
+fi
